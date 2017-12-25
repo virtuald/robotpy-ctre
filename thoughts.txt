@@ -1,0 +1,27 @@
+# two pieces to autogenerate:
+
+C++ class wrapping the CCI
+pybind wrappers for the C++ class
+
+What is the logger for?
+
+# goal is 100% autogen -- how do I manually fix the things that need to be fixed?
+
+inherit from .. something? Actually, override would need to inherit from autogen
+
+# include extra from template?
+
+# why isn't the template just using CppHeaderParser data directly?
+# -> because we need hooks? do we?
+
+# problem: the sim translation is not straightforward
+
+# .. hal needs to be camel cased
+# .. actually, just the generated wrapper
+
+# .. ok, how do I translate parameters? maybe a lookup table?
+# .. specify it using a hook
+
+CanTalonSRX :
+    CanTalonSRX_AutoGen
+        BaseMotorController ?

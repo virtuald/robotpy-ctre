@@ -1,0 +1,10 @@
+
+from hal_impl import hal_data
+
+class {{ module_name }}{% if inherits is defined %}({{ inherits }}){% endif %}:
+    
+  {% for fn in header.functions %}
+    def {{ fn.x_name }}(self{{ fn.py_self_comma }}{{ fn.parameters[1:] | join(', ', attribute='name') }}):
+        {{ data[fn.name] | trim }}
+  
+  {% endfor %}

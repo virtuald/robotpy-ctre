@@ -1,0 +1,41 @@
+---
+
+# - headers:
+#   - cpp/include/ctre/phoenix/CCI/CANifier_CCI.h
+#   template: sim.py.j2
+#   hooks: hooks.py
+#   data: CANifier_sim.yml
+#   vars:
+#     module_name: CANifier
+# 
+- headers:
+  - cpp/include/ctre/phoenix/CCI/CANifier_CCI.h
+  template: wrap.hpp.j2
+  #output: CANifier.hpp
+  hooks: hooks.py
+  vars:
+    module_name: CANifier
+
+# - headers:
+#   - "CANifier.hpp"
+#   template: pybind.cpp.j2
+#   hooks: hooks.py
+#   #output: CANifier_pybind11.cpp
+#   vars:
+#     module_name: CANifier
+
+# - file: cpp/include/ctre/phoenix/CCI/MotController_CCI.h
+#   hooks: hooks.py
+#   data: simdata.yml
+#   vars:
+# 
+# - file: cpp/include/ctre/phoenix/CCI/PigeonIMU_CCI.h
+#   hooks: hooks.py
+#   vars:
+#     module_name: bar
+# 
+# - file: cpp/include/ctre/phoenix/CCI/TalonSRX_CCI.h
+#   vars:
+#     module_name: foo
+
+

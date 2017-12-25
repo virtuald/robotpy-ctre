@@ -1,0 +1,25 @@
+---
+c_CANifier_Create1: |
+    # TODO
+c_CANifier_SetLEDOutput: |
+    # TODO
+c_CANifier_SetGeneralOutputs: |
+    # TODO
+c_CANifier_SetGeneralOutput: |
+    # TODO
+c_CANifier_SetPWMOutput: |
+    # TODO
+c_CANifier_EnablePWMOutput: |
+    # TODO
+c_CANifier_GetGeneralInputs: |
+    # TODO
+c_CANifier_GetGeneralInput: |
+    # TODO
+c_CANifier_GetPWMInput: |
+    # TODO
+c_CANifier_GetLastError: |
+    # TODO
+c_CANifier_GetBatteryVoltage: |
+    # TODO
+c_CANifier_SetLastError: |
+    # TODO

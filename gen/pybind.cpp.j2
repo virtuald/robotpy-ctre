@@ -1,0 +1,28 @@
+
+#include <pybind11/pybind11.h>
+namespace py = pybind11;
+
+#include "{{ module_name }}.hpp"
+
+PYBIND11_PLUGIN({{ module_name }}) {
+
+  py::module m("{{ module_name }}");
+
+  {% for cls in header.classes %}
+  py::class_<{{ cls.name }}> {{ cls.name | lower }}(m, "{{ cls.name }}");
+  {% if cls.methods.public %}
+  {{ cls.name | lower }}
+  {% for method in cls.methods.public %}
+    {% if method.name == cls.name %}
+    .def(py::init<{{ method.parameters | join(', ', attribute='raw_type') }}>())
+    {% else %}
+    .def("{{ method.name }}", &{{ cls.name }}::{{method.name}})
+    {% endif %}
+  {% endfor %}
+  ;
+  {% endif %}
+  
+  {% endfor %}
+  
+  return m.ptr();
+}
