@@ -13,6 +13,11 @@ install:
 # command to run tests
 script:
   - tests/run_tests.sh
+  
+  # TODO
+  #- pip uninstall robotpy-hal-sim
+  #- pip install robotpy-hal-roborio
+  #- TRAVIS_BUILD=1 python setup.py build
 notifications:
   webhooks:
     urls:
