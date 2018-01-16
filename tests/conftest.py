@@ -43,11 +43,6 @@ def MotController():
 
 
 @pytest.fixture(scope='function')
-def ControlMode(ctre):
-    return ctre._impl.ControlMode
-
-
-@pytest.fixture(scope='function')
 def sendablebuilder(wpilib, networktables):
     builder = wpilib.SendableBuilder()
     table = networktables.NetworkTables.getTable("component")

@@ -2,6 +2,40 @@
 c_MotController_Create1:
   code: |
     self.create_called = True
+    
+    self.hal_data = NotifyDict({
+      'type': 'ctre_motorcontroller',
+      'sim_display': False, # used in sim
+      
+      
+      
+      
+      #'override_limit_switch': 0,
+      #'override_braketype': None,
+      
+      #'pulse_width_velocity': 0,
+      #'pulse_width_present': 0,
+      
+      #'voltage_compensation_rate': 0,
+      
+      #'battery': 12.0,
+      
+      # Motion profile stuff
+      #'mp_position': 0,
+      #'mp_velocity': 0,
+      #'mp_timeDurMs': 0,
+      #'mp_profileSlotSelect': 0,
+      
+      #'mp_flags': 0,
+      #'mp_topBufferCnt': 0,
+      #'mp_btmBufferCnt': 0,
+      #'mp_topBufferRem': 0,
+      #'mp_zeroPos': 0,
+      #'mp_outputEnable': TalonSRXConst.kMotionProfile_Disable
+  })
+  
+  hal_data['CAN'][baseArbId] = self.hal_data
+    
 c_MotController_GetDeviceNumber:
   code: |
     raise NotImplementedError
@@ -122,7 +156,7 @@ c_MotController_ConfigNeutralDeadband:
   doc: |
     Configures the output deadband percentage.
     
-    :param percentDeadband: 
+    :param percentDeadband:
         Desired deadband percentage. Minimum is 0.1%, Maximum is 25%.
         Pass 0.04 for 4% (factory default).
     :param timeoutMs:
@@ -725,7 +759,7 @@ c_MotController_PushMotionProfileTrajectory:
     Push another trajectory point into the top level buffer (which is emptied
     into the motor controller's bottom buffer as room allows).
 
-    :param trajPt: 
+    :param trajPt:
         to push into buffer.
 
         The members should be filled in with these values...
@@ -747,7 +781,7 @@ c_MotController_PushMotionProfileTrajectory:
         Typically the first point should have this set only thus
         allowing the remainder of the MP positions to be relative to
         zero.
-    :returns: 
+    :returns:
         CTR_OKAY if trajectory point push ok. ErrorCode if buffer is
         full due to kMotionProfileTopBufferCapacity.
 c_MotController_PushMotionProfileTrajectory_2:
@@ -782,7 +816,7 @@ c_MotController_GetMotionProfileStatus:
     For best performance, Caller can snapshot all status information regarding the
     motion profile executer.
     
-    :param statusToFill: 
+    :param statusToFill:
         Caller supplied object to fill.
     
         The members are filled, as follows...
@@ -878,7 +912,7 @@ c_MotController_GetFirmwareVersion:
   doc: |
     Gets the firmware version of the device.
     
-    :returns: Firmware version of device. For example: version 1-dot-2 
+    :returns: Firmware version of device. For example: version 1-dot-2
         is 0x0102.
 c_MotController_HasResetOccurred:
   code: |
@@ -891,8 +925,8 @@ c_MotController_ConfigSetCustomParam:
   doc: |
     Sets the value of a custom parameter. This is for arbitrary use.
 
-    Sometimes it is necessary to save calibration/limit/target information 
-    in the device. Particularly if the device is part of a subsystem that 
+    Sometimes it is necessary to save calibration/limit/target information
+    in the device. Particularly if the device is part of a subsystem that
     can be replaced.
 
     :param newValue:
@@ -1033,7 +1067,7 @@ c_MotController_EnableCurrentLimit:
 
     Not available on the Victor SPX
 
-    see :meth:`.configPeakCurrentLimit`, :meth:`.configPeakCurrentDuration`, 
+    see :meth:`.configPeakCurrentLimit`, :meth:`.configPeakCurrentDuration`,
     :meth:`.configContinuousCurrentLimit`
 c_MotController_SetLastError:
   code: |
@@ -1045,7 +1079,7 @@ c_MotController_GetAnalogIn:
     Get the position of whatever is in the analog pin of the Talon,
     regardless of whether it is actually being used for feedback.
 
-    :returns: 
+    :returns:
         the 24bit analog value. The bottom ten bits is the ADC (0 - 1023)
         on the analog pin of the Talon. The upper 14 bits tracks the
         overflows and underflows (continuous sensor).
